@@ -1,0 +1,23 @@
+<view style='margin:10px;'>
+  <view style='text-align: center;color: green; font-size: 40rpx; padding-bottom: 35rpx;'>{{day}}</view>
+
+  <view style="margin-bottom: 35px;">
+    <view class="" wx:for="{{cardRecords}}" wx:key="{{index}}" data-idx="{{index}}">
+      <template is="cardInfoTemplate" data="{{...item}}"></template>
+    </view>
+  </view>
+
+  <view>
+    <button style="font-size: 38rpx;" type="primary" size="default" loading="{{saveLoading}}" plain="true" disabled="{{saveDisabled}}" bindtap="saveSchedule"> 保存 </button>
+  </view>
+</view>
+
+<!-- 单个打卡任务模板 -->
+<template name="cardInfoTemplate">
+  <view class="section section_gap">
+    <text class="section__title" style="margin-left: 40rpx;font-size: 35rpx;">{{taskName}}</text>
+    <view class="body-view">
+      <slider value="{{schedule}}" step="5" min="0" max="100" show-value data-taskid='{{taskId}}' bindchange="sliderChange"/>
+    </view>
+  </view>
+</template>
